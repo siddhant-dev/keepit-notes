@@ -1,0 +1,5 @@
+<div class="container">
+    <div  *ngFor="let a of list let i=index"  [ngClass]= "{'card': i%2, 'card3' : !(i%2)}" >
+    {{i}}
+    </div>
+</div>

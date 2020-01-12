@@ -1,0 +1,61 @@
+.add{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.strech{
+    width: 40%;
+}
+
+.f-size{
+    font-size: 1.8rem;
+}
+
+.strike{
+    text-decoration: line-through;
+    /* color: whitesmoke; */
+    font-size: 2rem;
+}
+
+.note{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.note-input {
+    width: 90%;
+    max-width: unset;
+}
+
+.foot{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.show {
+    display: block;
+    /* transform: translateX(100%); */
+    transition: all 0.6s ease-out; 
+    opacity: 1;
+    /* text-align: center; */
+}
+.noShow{
+    display: none;
+    /* transform: translateX(0); */
+    opacity: 0;
+}
+
+@media screen and (max-width: 977px){
+    .note-input {
+        width: 85%;
+    }
+    .strech{
+        width: 100%;
+    }
+}
+
