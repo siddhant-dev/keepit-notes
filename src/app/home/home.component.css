@@ -7,13 +7,13 @@
     position: relative;
 } */
 
-.container {
+/* .container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 1rem;
     grid-auto-flow: dense;
     margin: 1em auto;
-    /* max-width: 800px; */
+    max-width: 800px;
 }
 .container div.card{
     max-height: 60vh;
@@ -42,4 +42,8 @@
         min-width: 100%;
         min-height: 0;
     }
+} */
+
+app-detail-card{
+    width: -webkit-fill-available;
 }

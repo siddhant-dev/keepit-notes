@@ -6,9 +6,12 @@ import { NbThemeModule, NbButtonModule, NbLayoutModule,
   NbInputModule,
   NbCardModule,
   NbCheckboxModule,
+  NbDialogModule,
+  NbListModule
 
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
+import { MatGridListModule } from '@angular/material/grid-list'
 // import { NbButtonModule }  from '@nebular/theme/components/button'
 
 
@@ -25,7 +28,10 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
     NbIconModule,
     NbInputModule,
     NbCardModule,
-    NbCheckboxModule
+    NbCheckboxModule,
+    NbDialogModule.forRoot(),
+    MatGridListModule,
+    NbListModule,
 
   ],
   exports: [
@@ -37,7 +43,10 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
     NbIconModule,
     NbInputModule,
     NbCardModule,
-    NbCheckboxModule
+    NbCheckboxModule,
+    NbDialogModule,
+    MatGridListModule,
+    NbListModule,
   ]
 })
 export class NebularModule { }

@@ -1,0 +1,10 @@
+.note{
+    display: flex;
+    justify-content: flex-start ;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.strech{
+    width: 85%;
+}

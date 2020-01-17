@@ -1,5 +1,14 @@
-<div class="container">
-    <div  *ngFor="let a of list let i=index"  [ngClass]= "{'card': i%2, 'card3' : !(i%2)}" >
-    {{i}}
+<!-- <div class="container">
+    <div  *ngFor="let a of list let i=index"        >
+   <app-detail-card [item]="a"></app-detail-card>
     </div>
-</div>
+</div> -->
+
+<mat-grid-list [cols]="col" rowHeight="60px" gutterSize="12">
+    <mat-grid-tile *ngFor = "let i of list"
+    [colspan]="1"
+    [rowspan]="4>i.itemList.length ? i.itemList.length + 1 : i.itemList.length">
+    <app-detail-card [item]="i"></app-detail-card>
+
+    </mat-grid-tile>
+</mat-grid-list>

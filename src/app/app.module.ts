@@ -11,14 +11,19 @@ import { NebularModule } from '../app/nebular/nebular.module';
 import { HomeComponent } from './home/home.component';
 import { DetailCardComponent } from './detail-card/detail-card.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AddNoteComponent } from './add-note/add-note.component'
+import { AddNoteComponent } from './add-note/add-note.component';
+import { LoginComponent } from './access/login/login.component';
+import { SignupComponent } from './access/signup/signup.component'
+// import { MiniGrid } from 'minigrid';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     DetailCardComponent,
-    AddNoteComponent
+    AddNoteComponent,
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
@@ -28,9 +33,11 @@ import { AddNoteComponent } from './add-note/add-note.component'
     AngularFireAuthModule,
     BrowserAnimationsModule,
     NebularModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    // MiniGrid
 
   ],
+  entryComponents: [AddNoteComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

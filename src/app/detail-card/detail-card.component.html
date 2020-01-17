@@ -1,1 +1,11 @@
-<p>detail-card works!</p>
+<nb-card accent="primary">
+    <nb-card-header>{{title}}</nb-card-header>
+    <nb-list>
+        <nb-list-item *ngFor="let i of itemList">
+                <nb-checkbox [checked]="i.isCheck">
+                    &nbsp;
+                </nb-checkbox>
+                <span>{{i.item}}</span>
+        </nb-list-item>
+    </nb-list>
+</nb-card>
