@@ -2,8 +2,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    max-width: 100%;
+    width: 1000px;
     
 }
+
+.ctrlWidth{
+    width: 100%;
+}
+
 
 .strech{
     width: 40%;
@@ -56,6 +63,10 @@
     }
     .strech{
         width: 100%;
+    }
+
+    .add{
+        width: auto;
     }
 }
 

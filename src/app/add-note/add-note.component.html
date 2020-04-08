@@ -1,4 +1,4 @@
-<div class="add">
+<div class="add" [ngClass]="{'ctrlWidth': !width}">
     <form [formGroup] = "todoForm" class="strech">
 
     <nb-card accent="info" > 
@@ -7,7 +7,7 @@
         </nb-card-header>
         <nb-card-body  [ngClass]="{'show': isTouch ,'noShow': !isTouch}">
             <div  formArrayName="items">
-                <div *ngFor="let it of todoForm.controls.items.controls; let i=index" [formGroupName]="i" >
+                <div *ngFor="let it of todoForm.get('items')['controls']; let i=index" [formGroupName]="i" >
                     <div class="note">
                         <nb-checkbox  formControlName="check">  &nbsp;
                         </nb-checkbox>

@@ -1,5 +1,8 @@
 <nb-card accent="primary">
-    <nb-card-header>{{title}}</nb-card-header>
+    <div class="header">
+        <nb-card-header>{{title}}</nb-card-header>
+        <nb-icon icon="edit-outline" class="edit" [options]="{animation: {type: 'shake'}}" (click)="open()"></nb-icon>
+    </div>
     <nb-list>
         <nb-list-item *ngFor="let i of itemList">
                 <nb-checkbox [checked]="i.isCheck">

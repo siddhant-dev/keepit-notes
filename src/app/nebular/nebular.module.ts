@@ -11,8 +11,7 @@ import { NbThemeModule, NbButtonModule, NbLayoutModule,
 
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
-import { MatGridListModule } from '@angular/material/grid-list'
-// import { NbButtonModule }  from '@nebular/theme/components/button'
+import { MatGridListModule } from '@angular/material/grid-list';
 
 
 
@@ -29,7 +28,7 @@ import { MatGridListModule } from '@angular/material/grid-list'
     NbInputModule,
     NbCardModule,
     NbCheckboxModule,
-    NbDialogModule.forRoot(),
+    NbDialogModule.forChild(),
     MatGridListModule,
     NbListModule,
 

@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
-// import { checkServerIdentity } from 'tls';
-// import type { Item } from './services/todo';
+import {Todo} from '../services/todo';
+import { NbDialogRef } from '@nebular/theme';
 
 @Component({
   selector: 'app-add-note',
@@ -10,15 +10,32 @@ import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 })
 export class AddNoteComponent implements OnInit {
   isTouch: boolean;
+  width = false;
   todoForm: FormGroup;
+  @Input() todo: Todo;
   // item: Item;
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private dialog: NbDialogRef<AddNoteComponent>) { }
 
   ngOnInit() {
+    this.width = false;
     this.todoForm = this.fb.group({
       title: [],
       items: this.fb.array([this.initItems()]),
     });
+
+    if (this.todo) {
+      this.width = true;
+      this.todoForm.get('title').setValue(this.todo.title);
+      this.show();
+      // this.addItemList();
+      const list = this.todo.itemList;
+      for (let i = 0; i < list.length; i++) {
+        this.itemList.at(i).get('item').setValue(list[i].item);
+        this.itemList.at(i).get('check').setValue(list[i].isCheck);
+        this.addItemList();
+      }
+      this.removeItemList(list.length);
+    }
   }
 
   initItems(): FormGroup {
@@ -28,32 +45,35 @@ export class AddNoteComponent implements OnInit {
     });
   }
 
-  show(){
+  show() {
     this.isTouch = true;
   }
 
-  cancel(){
+  cancel() {
     this.isTouch = false;
     this.todoForm.reset();
+    this.dialog.close();
+
   }
 
-  get itemList(){
+  get itemList() {
     return this.todoForm.get('items') as FormArray;
   }
 
 
-  addItemList (){
+  addItemList() {
     this.itemList.push(this.initItems());
   }
 
-  removeItemList(index){
+  removeItemList(index) {
     this.itemList.removeAt(index);
   }
 
-  save(){
+  save() {
     const data: Todo = this.todoForm.value;
     console.log(data);
     // this.todoForm.setValue({title: 'Sid', items:[ {item: 'hi', check: false} , {item: 'no', check:true}]})
+    this.dialog.close();
   }
 
 }

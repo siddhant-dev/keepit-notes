@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NbDialogService } from '@nebular/theme';
 import { AddNoteComponent } from '../add-note/add-note.component';
+import { Todo, TodoItem } from '../services/todo';
 
 @Component({
   selector: 'app-detail-card',
@@ -21,8 +22,8 @@ export class DetailCardComponent implements OnInit {
     console.log(this.title , this.itemList);
   }
 
-  open(id) {
-    this.dialog.open(AddNoteComponent , {hasBackdrop:true})
+  open() {
+    this.dialog.open(AddNoteComponent, {context: {todo: this.item}});
   }
 
 }

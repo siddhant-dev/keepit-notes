@@ -1,5 +1,5 @@
 nb-sidebar{
-    transition: width, 0.3s;
+    transition: width, 0.3s ease-in-out;
 }
 
 .header{
@@ -10,14 +10,11 @@ nb-sidebar{
     text-align: center;
 
 }
+
 nb-icon{
     height: inherit;
 }
 
 .f-size{
     font-size: 1.9rem;
-}
-
-@media screen and (max-width: 900px){
-    
 }

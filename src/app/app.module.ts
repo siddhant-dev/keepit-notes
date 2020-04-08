@@ -14,6 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AddNoteComponent } from './add-note/add-note.component';
 import { LoginComponent } from './access/login/login.component';
 import { SignupComponent } from './access/signup/signup.component'
+import { NbDialogModule, NbDialogRef } from '@nebular/theme';
 // import { MiniGrid } from 'minigrid';
 
 @NgModule({
@@ -33,12 +34,18 @@ import { SignupComponent } from './access/signup/signup.component'
     AngularFireAuthModule,
     BrowserAnimationsModule,
     NebularModule,
+    NbDialogModule,
     ReactiveFormsModule,
     // MiniGrid
 
   ],
   entryComponents: [AddNoteComponent],
-  providers: [],
+  providers: [{
+    provide:NbDialogRef,
+    useValue: {
+      close: (dialogResult: any) => { }
+    }
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

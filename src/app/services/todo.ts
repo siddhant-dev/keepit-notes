@@ -1,8 +1,8 @@
-interface Todo {
+export interface Todo {
     title: string;
     itemList: TodoItem[];
 }
-interface TodoItem {
+export interface TodoItem {
     item: string;
     isCheck: boolean;
 }

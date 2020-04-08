@@ -8,3 +8,16 @@
 .strech{
     width: 85%;
 }
+
+.header{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+.edit{
+    margin-top: 10px;
+    margin-right: 8px;
+    font-size: 25px;
+}

@@ -1,6 +1,6 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { Observable } from 'rxjs';
- 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   {item: 'Angular', isCheck: true},
   {item: 'Angular', isCheck: true},
   {item: 'Angular', isCheck: true},
-  
+
 ]},
 {
   title: 'React1', itemList: [
@@ -81,15 +81,21 @@ constructor() {}
 @HostListener('window:resize', ['$event'])
 onResize(event) {
   this.innerWidth = window.innerWidth;
-  console.log(this.innerWidth);
-  if(this.innerWidth < 820) {
+  // console.log(this.innerWidth);
+  if (this.innerWidth < 820) {
     this.col = 2;
-  }
-  else {
+  } else {
     this.col = 4;
   }
 }
   ngOnInit() {
+    this.innerWidth = window.innerWidth;
+    // console.log(this.innerWidth);
+    if (this.innerWidth < 820) {
+    this.col = 2;
+  } else {
+    this.col = 4;
+  }
   }
 
 }
