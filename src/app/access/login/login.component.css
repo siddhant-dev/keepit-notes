@@ -1,0 +1,28 @@
+.login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: auto;
+    margin-top: 10%
+}
+
+.form{
+    width: 60vW;
+}
+
+.danger{
+    color: #ff3d71;
+    margin-top: 0.5rem;
+    font-size: small;
+    text-align: right;
+}
+
+@media screen and (max-width: 977px){
+    .login{
+        margin-top: 30%;
+    }
+    .form{
+        width: 80vw;
+    }
+}

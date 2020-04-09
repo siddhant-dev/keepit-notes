@@ -1,1 +1,27 @@
-<p>login works!</p>
+<div class="login">
+    <nb-card status="primary">
+        <nb-card-header>Login</nb-card-header>
+        
+            <nb-card-body>
+                <form [formGroup] = "loginForm" class="form">
+                    <nb-form-field>
+                        <input type="text" nbInput placeholder="Email Address" fullWidth formControlName="email">
+                    <div *ngIf="email.invalid && (email.pristine || email.touched)" class="danger">
+                        Please enter a valid email address.
+                    </div>
+                    <input [type]="getType()" nbInput placeholder="Please enter the password" formControlName="password">
+                    <button nbSuffix nbButton ghost (click)="toggleShowPassword()">
+                    <nb-icon [icon]="showPassword ? 'eye-outline' : 'eye-off-2-outline'"
+                    pack="eva"
+                    [attr.aria-label]="showPassword ? 'hide password' : 'show password'"> 
+                </nb-icon>
+            </button>
+                    </nb-form-field>
+                   
+                       
+
+
+                </form> 
+            </nb-card-body>
+    </nb-card>
+</div>
