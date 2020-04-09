@@ -4,8 +4,7 @@
         
             <nb-card-body>
                 <form [formGroup] = "loginForm" class="form">
-                    <nb-form-field>
-                        <input type="text" nbInput placeholder="Email Address" fullWidth formControlName="email">
+                    <input type="text" nbInput placeholder="Email Address" fullWidth formControlName="email">
                     <div *ngIf="email.invalid && (email.pristine || email.touched)" class="danger">
                         Please enter a valid email address.
                     </div>
@@ -16,7 +15,6 @@
                     [attr.aria-label]="showPassword ? 'hide password' : 'show password'"> 
                 </nb-icon>
             </button>
-                    </nb-form-field>
                    
                        
 

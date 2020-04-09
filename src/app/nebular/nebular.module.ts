@@ -7,7 +7,7 @@ import { NbThemeModule, NbButtonModule, NbLayoutModule,
   NbCardModule,
   NbCheckboxModule,
   NbDialogModule,
-  NbListModule
+  NbListModule,
 
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
