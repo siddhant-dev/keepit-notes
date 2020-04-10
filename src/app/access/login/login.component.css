@@ -4,15 +4,32 @@
     align-items: center;
     width: 100%;
     margin: auto;
-    margin-top: 10%
+    margin-top: 10%;
+    flex-direction: column;
 }
 
 .form{
     width: 60vW;
 }
 
+.pass{
+    margin-top: 20px;
+}
+
+nb-card-footer{
+    display: flex;
+    justify-content: space-between;
+}
+
 .danger{
     color: #ff3d71;
+    margin-top: 0.5rem;
+    font-size: small;
+    text-align: right;
+}
+
+.success {
+    color: #00D68F;
     margin-top: 0.5rem;
     font-size: small;
     text-align: right;

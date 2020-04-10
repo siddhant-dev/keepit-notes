@@ -8,6 +8,8 @@ import { NbThemeModule, NbButtonModule, NbLayoutModule,
   NbCheckboxModule,
   NbDialogModule,
   NbListModule,
+  NbFormFieldModule,
+  NbTooltipModule,
 
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
@@ -31,6 +33,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     NbDialogModule.forChild(),
     MatGridListModule,
     NbListModule,
+    NbFormFieldModule,
+    NbTooltipModule
 
   ],
   exports: [
@@ -46,6 +50,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     NbDialogModule,
     MatGridListModule,
     NbListModule,
+    NbFormFieldModule,
+    NbTooltipModule
   ]
 })
 export class NebularModule { }

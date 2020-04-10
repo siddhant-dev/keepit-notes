@@ -41,7 +41,7 @@ import { NbDialogModule, NbDialogRef } from '@nebular/theme';
   ],
   entryComponents: [AddNoteComponent],
   providers: [{
-    provide:NbDialogRef,
+    provide: NbDialogRef,
     useValue: {
       close: (dialogResult: any) => { }
     }

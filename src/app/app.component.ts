@@ -36,4 +36,10 @@ export class AppComponent implements OnInit {
 
   }
 
+  close(){
+    this.isToggle = false;
+    this.icon = 'menu-2-outline';
+    this.sidbar.collapse();
+  }
+
 }

@@ -1,25 +1,41 @@
 <div class="login">
     <nb-card status="primary">
-        <nb-card-header>Login</nb-card-header>
+        <nb-card-header><h1>Login</h1></nb-card-header>
         
             <nb-card-body>
                 <form [formGroup] = "loginForm" class="form">
-                    <input type="text" nbInput placeholder="Email Address" fullWidth formControlName="email">
-                    <div *ngIf="email.invalid && (email.pristine || email.touched)" class="danger">
+                    <nb-form-field>
+                        <input type="text" nbInput placeholder="Email Address" 
+                        [status]="email.invalid && (email.dirty || email.touched)? 'danger': 'success'" 
+                        fullWidth formControlName="email">
+                    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="danger">
                         Please enter a valid email address.
                     </div>
-                    <input [type]="getType()" nbInput placeholder="Please enter the password" formControlName="password">
-                    <button nbSuffix nbButton ghost (click)="toggleShowPassword()">
-                    <nb-icon [icon]="showPassword ? 'eye-outline' : 'eye-off-2-outline'"
-                    pack="eva"
-                    [attr.aria-label]="showPassword ? 'hide password' : 'show password'"> 
-                </nb-icon>
-            </button>
+                    <div class="pass">
+                        <input type="password" nbInput placeholder="Enter your password" 
+                        [status]="password.invalid && (password.dirty || password.touched)? 'danger': 'success'"
+                        fullWidth formControlName="password">
+                        <div *ngIf="password.invalid && (password.dirty || password.touched)"  class="danger">
+                            Password is mandatory
+                        </div>
+                    </div>
+                    <div class="pass">
+                        <button nbButton status="info" fullWidth [disabled]="loginForm.invalid" (click)="login()">Login</button>
+                    </div>
+                    
+                    </nb-form-field>
                    
                        
 
 
                 </form> 
             </nb-card-body>
+            <nb-card-footer>
+                <button nbButton outline status="danger" nbTooltip="Please Enter the email address before proceeding" 
+                size="small" (click)="forgot()">Forgot Password?</button>
+                <button nbButton outline status="success" size="small" (click)="signUp()">SignUp</button>
+            </nb-card-footer>
     </nb-card>
+    <div class="danger" *ngIf="errMessage">{{errMessage}}</div>
+    <div class="success" *ngIf="successMessage">{{successMessage}}</div>
 </div>

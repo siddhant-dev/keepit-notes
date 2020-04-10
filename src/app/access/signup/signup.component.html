@@ -1,1 +1,50 @@
-<p>signup works!</p>
+<div class="signup">
+    <nb-card status="success">
+        <nb-card-header >
+            <h1>SignUp</h1>
+        </nb-card-header>
+        <nb-card-body>
+            <form [formGroup]="signupForm" class="form">
+                <nb-form-field>
+                    <input type="text" nbInput placeholder="Enter your Name"
+                    [status]="name.invalid && (name.dirty|| name.touched)? 'danger' : 'success'"
+                    fullWidth formControlName="name">
+                    <div class="danger" *ngIf="name.invalid && (name.dirty|| name.touched)">
+                        Please enter a name with at least 3 characters
+                    </div>
+                </nb-form-field>
+                <nb-form-field class="pass">
+                    <input type="text" nbInput placeholder="Enter you email address"
+                    [status]="email.invalid && (email.dirty || email.touched)? 'danger': 'success'" 
+                    fullWidth formControlName="email">
+                    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="danger">
+                        Please enter a valid email address.
+                    </div>
+                </nb-form-field>
+                <nb-form-field class="pass">
+                    <input type="password" nbInput placeholder="Create a password at least 8 chars long"
+                    [status]="password.invalid && (password.dirty || password.touched) ? 'danger' : 'success'"
+                    fullWidth formControlName="password">
+                    <div class="danger" *ngIf="password.invalid && (password.dirty || password.touched)">
+                        Please enter a password that is 8 characters long
+                    </div>
+                </nb-form-field>
+                <nb-form-field class="pass">
+                    <input type="password" nbInput placeholder="Re-enter your passowrd"
+                    [status]="confirmPassword.errors && confirmPassword.errors.ConfirmPassword ? 'danger' : 'success'"
+                    fullWidth formControlName="confirmPassword">
+                    <div class="danger" *ngIf="confirmPassword.errors && confirmPassword.errors.ConfirmPassword">
+                        Passwords do not match!
+                    </div>
+                </nb-form-field>
+                <div class="pass">
+                    <button nbButton fullWidth status="success" (click)="createUser()" [disabled]="signupForm.invalid">SignUp</button>
+                </div>
+            </form>
+            
+        </nb-card-body>
+        <nb-card-footer>
+            <button nbButton size="small" outline status="primary" (click)="login()">Already Have an Account?</button>
+        </nb-card-footer>
+    </nb-card>
+</div>

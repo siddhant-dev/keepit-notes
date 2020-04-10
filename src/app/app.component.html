@@ -12,17 +12,10 @@
     </nb-sidebar>
 
         
-<nb-layout-column>
-    <!-- <app-add-note></app-add-note>
-    <app-home></app-home> -->
+    <nb-layout-column (click)="close()">
+        <router-outlet></router-outlet>  
 
-    <router-outlet></router-outlet>
-   
-    <!-- <app-detail-card></app-detail-card> -->
-
-    
-
-</nb-layout-column>
+    </nb-layout-column>
 </nb-layout>
 
 

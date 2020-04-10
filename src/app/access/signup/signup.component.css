@@ -1,0 +1,32 @@
+.signup{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: auto;
+    margin-top: 5%
+}
+
+form{
+    width: 60vW;
+}
+
+.pass{
+    margin-top: 20px;
+}
+
+.danger{
+    color: #ff3d71;
+    margin-top: 0.5rem;
+    font-size: small;
+    text-align: right;
+}
+
+@media screen and (max-width: 977px){
+    .signup{
+        margin-top: 20%;
+    }
+    .form{
+        width: 80vw;
+    }
+}
