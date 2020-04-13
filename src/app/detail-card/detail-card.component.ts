@@ -19,7 +19,6 @@ export class DetailCardComponent implements OnInit {
   ngOnInit() {
     this.title = this.item.title;
     this.itemList = this.item.itemList;
-    console.log(this.title , this.itemList);
   }
 
   open() {

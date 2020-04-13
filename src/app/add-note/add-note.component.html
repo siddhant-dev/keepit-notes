@@ -25,10 +25,12 @@
         </nb-card-body>
         <nb-card-footer   [ngClass]="{'show': isTouch ,'noShow': !isTouch}">
             <div class="foot">
-                <button nbButton size="tiny" (click)="save()">Save</button>
-                <nb-icon icon="color-palette-outline"></nb-icon>
+                <button nbButton status="primary"  size="tiny" (click)="save()">Save</button>
+                <nb-icon icon="trash-2-outline" *ngIf="width" status="danger" 
+                [options]="{animation: {type: 'shake'}}" (click)="deleteNote()"></nb-icon>
                 <button nbButton status="warning" size="tiny" (click)="cancel()">Cancel</button>
             </div>
+            <div class="danger" *ngIf="errMessage">{{errMessage}}</div>
         </nb-card-footer>
     </nb-card>
 </form>

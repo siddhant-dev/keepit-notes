@@ -5,7 +5,7 @@
     </div>
     <nb-list>
         <nb-list-item *ngFor="let i of itemList">
-                <nb-checkbox [checked]="i.isCheck">
+                <nb-checkbox [checked]="i.check" disabled>
                     &nbsp;
                 </nb-checkbox>
                 <span>{{i.item}}</span>

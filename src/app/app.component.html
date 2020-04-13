@@ -1,13 +1,19 @@
 <nb-layout>
     <nb-layout-header fixed>
         <div class="header">
-        <nb-icon [icon]="icon" class="f-size" (click)="toggle()"></nb-icon>
+        <nb-icon [icon]="icon" class="f-size" (click)="toggle()" *ngIf="access.user$ | async"></nb-icon>
         
             <h4>Keepit Notes</h4>
         </div>
     </nb-layout-header>
-    <nb-sidebar fixed state="collapsed">
-        <a routerLink="/login">Login</a>
+    <nb-sidebar fixed state="collapsed" *ngIf="access.user$ | async">
+        
+        <div class="side">
+            <nb-user [name]="name" [title]="email"></nb-user>
+            <br>
+            <button nbButton status="danger" (click)="logOut()">Sign Out</button>
+        </div>
+        
         
     </nb-sidebar>
 

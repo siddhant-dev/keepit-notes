@@ -11,7 +11,7 @@ import { AccessService } from 'src/app/services/access.service';
 export class LoginComponent implements OnInit {
 
   loginForm = this.fb.group({
-    email: ['',[ Validators.email, Validators.required]],
+    email: ['', [ Validators.email, Validators.required]],
     password: ['', Validators.required]
   });
   errMessage: string;
@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  get email(){
+  get email() {
     return this.loginForm.get('email');
   }
 
@@ -31,29 +31,41 @@ export class LoginComponent implements OnInit {
     return this.loginForm.get('password');
   }
 
-  signUp(){
+  signUp() {
     this.route.navigateByUrl('signUp');
   }
 
-login(){
+login() {
   const user = {
     email: this.email.value,
     password: this.password.value
-  }
+  };
+  this.access.login(user).then(() => {
+    this.route.navigateByUrl('');
+  }).catch(err => {
+    if (err.code === 'auth/wrong-password') {
+      this.errMessage = err.message;
+    } else if (err.code === 'auth/user-not-found') {
+      this.errMessage = 'Incorrect email address, please check the email.';
+    } else {
+      this.errMessage = 'Some error occoured, please try again after some time';
+    }
+  });
 
-  this.access.login(user);
 }
 
-forgot(){
-  if(!this.email.value){
+forgot() {
+  if (!this.email.value) {
     this.errMessage = 'Please enter the email address';
-  } else{
+  } else {
     this.errMessage = null;
     const d = this.access.forgetPassword(this.email.value).then(() => {
       this.successMessage = `An Email has been sent to ${this.email.value}`;
     }).catch(err => {
-      if(err === 'auth/invalid-email'){
+      if (err === 'auth/invalid-email') {
         this.errMessage = 'Invalid email Address. Please try again';
+      } else {
+        this.errMessage = 'Some error occoured, please try again after some time';
       }
     });
   }

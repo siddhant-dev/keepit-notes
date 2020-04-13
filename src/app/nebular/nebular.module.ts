@@ -10,6 +10,7 @@ import { NbThemeModule, NbButtonModule, NbLayoutModule,
   NbListModule,
   NbFormFieldModule,
   NbTooltipModule,
+  NbUserModule,
 
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
@@ -34,7 +35,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatGridListModule,
     NbListModule,
     NbFormFieldModule,
-    NbTooltipModule
+    NbTooltipModule,
+    NbUserModule
 
   ],
   exports: [
@@ -51,7 +53,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatGridListModule,
     NbListModule,
     NbFormFieldModule,
-    NbTooltipModule
+    NbTooltipModule,
+    NbUserModule
   ]
 })
 export class NebularModule { }

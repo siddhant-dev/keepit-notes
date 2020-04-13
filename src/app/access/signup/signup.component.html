@@ -44,7 +44,8 @@
             
         </nb-card-body>
         <nb-card-footer>
-            <button nbButton size="small" outline status="primary" (click)="login()">Already Have an Account?</button>
+            <button nbButton size="small" status="info" (click)="login()">Already Have an Account?</button>
         </nb-card-footer>
     </nb-card>
+    <div class="danger" *ngIf="errMessage">{{errMessage}}</div>
 </div>

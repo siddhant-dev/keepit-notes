@@ -41,19 +41,19 @@ export class AccessService {
 
    }
 
-   private async addDetails(user: User){
+   private async addDetails(user: User) {
     const currentUser = this.auth.auth.currentUser;
-    try{
+    try {
       await currentUser.updateProfile({
         displayName: user.name
       });
       return currentUser;
-    } catch(err) {
+    } catch (err) {
       return this.handleError(err);
     }
   }
 
-  private updateUserData(user){
+  private updateUserData(user) {
     const ref: AngularFirestoreDocument<User> = this.fs.doc(`users/${user.uid}`);
 
     const data = {
@@ -66,14 +66,15 @@ export class AccessService {
   }
 
    private handleError(err: any) {
-     throw err.code;
+     throw err;
    }
 
-   async login(user){
-     try{
+   async login(user) {
+     try {
        return await this.auth.auth.signInWithEmailAndPassword(user.email, user.password);
-     } catch(err){
+     } catch (err) {
        console.log(err);
+       return this.handleError(err);
      }
 
    }
@@ -84,5 +85,10 @@ export class AccessService {
     } catch (err) {
      return this.handleError(err);
     }
+   }
+
+   async signOut() {
+     await this.auth.auth.signOut();
+     this.router.navigateByUrl('/login');
    }
 }

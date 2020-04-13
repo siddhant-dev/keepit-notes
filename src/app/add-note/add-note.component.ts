@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import {Todo} from '../services/todo';
 import { NbDialogRef } from '@nebular/theme';
+import { NotesService } from '../services/notes.service';
 
 @Component({
   selector: 'app-add-note',
@@ -12,9 +13,11 @@ export class AddNoteComponent implements OnInit {
   isTouch: boolean;
   width = false;
   todoForm: FormGroup;
+  errMessage: string;
   @Input() todo: Todo;
   // item: Item;
-  constructor(private fb: FormBuilder, private dialog: NbDialogRef<AddNoteComponent>) { }
+  constructor(private fb: FormBuilder, private dialog: NbDialogRef<AddNoteComponent>,
+              private note: NotesService) { }
 
   ngOnInit() {
     this.width = false;
@@ -31,7 +34,7 @@ export class AddNoteComponent implements OnInit {
       const list = this.todo.itemList;
       for (let i = 0; i < list.length; i++) {
         this.itemList.at(i).get('item').setValue(list[i].item);
-        this.itemList.at(i).get('check').setValue(list[i].isCheck);
+        this.itemList.at(i).get('check').setValue(list[i].check);
         this.addItemList();
       }
       this.removeItemList(list.length);
@@ -70,10 +73,40 @@ export class AddNoteComponent implements OnInit {
   }
 
   save() {
-    const data: Todo = this.todoForm.value;
-    console.log(data);
-    // this.todoForm.setValue({title: 'Sid', items:[ {item: 'hi', check: false} , {item: 'no', check:true}]})
+    this.errMessage = '';
+    this.isTouch = false;
+    const data = this.todoForm.value;
+    let finalData: Todo = {
+      title: data.title,
+      itemList: data.items,
+    };
+    if (!this.todo) {
+      this.note.createNotes(finalData).then(() => {
+        this.todoForm.reset();
+      }).catch(err => {
+        this.errMessage = 'Unable to save at the moment. Please try again later';
+      });
+    } else {
+      finalData = {
+        title: data.title,
+        itemList: data.items,
+        docId: this.todo.docId
+      };
+      this.note.updateNotes(finalData).then(() => {
+        this.todoForm.reset();
+      }).catch(err => {
+        this.errMessage = 'Unable to save at the moment. Please try again later';
+      });
+    }
     this.dialog.close();
+  }
+
+  deleteNote() {
+    this.note.deleteNotes(this.todo.docId).then().catch(err => {
+      this.errMessage = 'Unable to delete, Please try again later';
+    });
+    this.dialog.close();
+
   }
 
 }

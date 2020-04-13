@@ -11,6 +11,18 @@ nb-sidebar{
 
 }
 
+.side{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 80vh;
+   
+}
+
+.side:nth-last-child(1){
+    margin-top: auto;
+}
+
 nb-icon{
     height: inherit;
 }

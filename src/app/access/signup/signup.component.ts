@@ -29,6 +29,7 @@ export class SignupComponent implements OnInit {
   get confirmPassword() {
     return this.signupForm.get('confirmPassword');
   }
+  errMessage: string;
 
   signupForm = this.fb.group({
     name: ['', [Validators.required, Validators.minLength(3)]],
@@ -36,23 +37,26 @@ export class SignupComponent implements OnInit {
     password: ['', [Validators.required, Validators.minLength(8)]],
     confirmPassword: ['', Validators.required],
   }, {validator: ConfirmPasswordValidator.MatchPassword}
-  ); 
+  );
 
   ngOnInit() {
   }
 
-  login(){
+  login() {
     this.router.navigateByUrl('login');
   }
 
-  createUser(){
+  createUser() {
     const user: User = {
       name: this.name.value,
       email: this.email.value,
       password: this.password.value
     };
-    const d = this.access.createAccount(user);
-
+    this.access.createAccount(user).then(() => {
+      this.router.navigateByUrl('');
+    }).catch(err => {
+      this.errMessage = 'Some Error occured, please try again after some tine';
+    });
   }
 
 }
