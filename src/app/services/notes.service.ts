@@ -8,15 +8,14 @@ import { AngularFireAuth } from '@angular/fire/auth';
   providedIn: 'root'
 })
 export class NotesService {
-  userId: string;
   constructor(private access: AccessService, private fs: AngularFirestore, private auth: AngularFireAuth ) {
-      const user = this.auth.auth.currentUser;
-      this.userId = user.uid;
+      
   }
 
    createNotes(data: Todo) {
+     const userId = this.getUser();
      const id = this.fs.createId();
-     const ref: AngularFirestoreDocument<Todo> = this.fs.doc(`users/${this.userId}/notes/${id}`);
+     const ref: AngularFirestoreDocument<Todo> = this.fs.doc(`users/${userId}/notes/${id}`);
      const val = {
       docId: id,
       title: data.title,
@@ -26,17 +25,29 @@ export class NotesService {
    }
 
    getNote() {
-     const data = this.fs.collection(`users/${this.userId}/notes`).valueChanges();
-     return data;
+     const userId = this.getUser();
+     try {
+      const data = this.fs.collection(`users/${userId}/notes`).valueChanges();
+      return data;
+     } catch (err) {
+       return err;
+     }
    }
 
    updateNotes(data: Todo) {
-     const ref: AngularFirestoreDocument<Todo> = this.fs.doc(`users/${this.userId}/notes/${data.docId}`);
+     const userId = this.getUser();
+     const ref: AngularFirestoreDocument<Todo> = this.fs.doc(`users/${userId}/notes/${data.docId}`);
      return ref.set(data, {merge: true});
    }
 
    deleteNotes(docId: string) {
-    const ref: AngularFirestoreDocument<Todo> = this.fs.doc(`users/${this.userId}/notes/${docId}`);
+    const userId = this.getUser();
+    const ref: AngularFirestoreDocument<Todo> = this.fs.doc(`users/${userId}/notes/${docId}`);
     return ref.delete();
+   }
+
+   getUser(){
+    const user = this.auth.auth.currentUser;
+    return user.uid;
    }
 }

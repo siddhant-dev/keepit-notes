@@ -8,7 +8,7 @@
                 <nb-checkbox [checked]="i.check" disabled>
                     &nbsp;
                 </nb-checkbox>
-                <span>{{i.item}}</span>
+                <span [ngClass]="{'strike': i.check}">{{i.item}}</span>
         </nb-list-item>
     </nb-list>
 </nb-card>

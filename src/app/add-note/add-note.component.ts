@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import {Todo} from '../services/todo';
-import { NbDialogRef } from '@nebular/theme';
+import { NbDialogRef, NbToastrService, NbComponentStatus, NbIconConfig } from '@nebular/theme';
 import { NotesService } from '../services/notes.service';
 
 @Component({
@@ -17,7 +17,7 @@ export class AddNoteComponent implements OnInit {
   @Input() todo: Todo;
   // item: Item;
   constructor(private fb: FormBuilder, private dialog: NbDialogRef<AddNoteComponent>,
-              private note: NotesService) { }
+              private note: NotesService, private toast: NbToastrService) { }
 
   ngOnInit() {
     this.width = false;
@@ -82,9 +82,10 @@ export class AddNoteComponent implements OnInit {
     };
     if (!this.todo) {
       this.note.createNotes(finalData).then(() => {
+        this.showToast('Notes created successfully', 'info', 'Notes Created', true);
         this.todoForm.reset();
       }).catch(err => {
-        this.errMessage = 'Unable to save at the moment. Please try again later';
+        this.showToast('Unable to save at the moment. Please try again later', 'danger', 'Server Error');
       });
     } else {
       finalData = {
@@ -93,20 +94,32 @@ export class AddNoteComponent implements OnInit {
         docId: this.todo.docId
       };
       this.note.updateNotes(finalData).then(() => {
+        this.showToast('Notes updated successfully', 'info', 'Notes Saved', true);
         this.todoForm.reset();
       }).catch(err => {
-        this.errMessage = 'Unable to save at the moment. Please try again later';
+        this.showToast('Unable to save at the moment. Please try again later', 'danger', 'Server Error');
+
       });
     }
     this.dialog.close();
   }
 
   deleteNote() {
-    this.note.deleteNotes(this.todo.docId).then().catch(err => {
-      this.errMessage = 'Unable to delete, Please try again later';
+    this.note.deleteNotes(this.todo.docId).then(() => {
+      this.showToast('Notes deleted successfully', 'success', 'Notes Deleted');
+    }).catch(err => {
+      this.showToast('Unable to delete, Please try again later', 'danger', 'Server Error');
     });
     this.dialog.close();
 
+  }
+
+  showToast(message: string, status: NbComponentStatus, title: string, icon?: boolean) {
+    if (icon) {
+      this.toast.show(message, title, {status, duration: 3000, preventDuplicates: true, icon: 'checkmark-circle-outline'});
+    } else {
+      this.toast.show(message, title, {status, duration: 3000, preventDuplicates: true});
+    }
   }
 
 }

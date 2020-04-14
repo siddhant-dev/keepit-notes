@@ -23,7 +23,7 @@
 .strike{
     text-decoration: line-through;
     /* color: whitesmoke; */
-    font-size: 2rem;
+    color: rgb(134, 133, 133);
 }
 
 .note{

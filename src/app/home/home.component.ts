@@ -1,7 +1,6 @@
 import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { NotesService } from '../services/notes.service';
-import { Todo } from '../services/todo';
 
 @Component({
   selector: 'app-home',
@@ -36,6 +35,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 
       this.sub =  this.notes.getNote().subscribe(pay => {
         this.list = pay;
+      }, (err) => {
+        console.log(err);
       });
     }
 

@@ -4,6 +4,7 @@ import { ConfirmPasswordValidator } from './confirmPassword.validator';
 import { Router } from '@angular/router';
 import { AccessService } from 'src/app/services/access.service';
 import { User } from 'src/app/services/user';
+import { NbToastrService,NbComponentStatus } from '@nebular/theme';
 
 @Component({
   selector: 'app-signup',
@@ -12,7 +13,7 @@ import { User } from 'src/app/services/user';
 })
 export class SignupComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private router: Router, private access: AccessService) { }
+  constructor(private fb: FormBuilder, private router: Router, private access: AccessService, private toast: NbToastrService) { }
 
   get name() {
     return this.signupForm.get('name');
@@ -53,10 +54,18 @@ export class SignupComponent implements OnInit {
       password: this.password.value
     };
     this.access.createAccount(user).then(() => {
+      this.showToast('You will be redirected to home page', 'success', 'Successfully Signed Up!!');
       this.router.navigateByUrl('');
+
     }).catch(err => {
+      this.showToast('Some Error occured, please try again after some time', 'danger', 'Error!!!');
       this.errMessage = 'Some Error occured, please try again after some tine';
     });
+  }
+
+  showToast(message, status: NbComponentStatus, title){
+
+    this.toast.show(message, title, {status, duration: 3000, preventDuplicates: true});
   }
 
 }
