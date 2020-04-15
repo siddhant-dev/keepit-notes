@@ -1,7 +1,8 @@
 <nb-layout>
     <nb-layout-header fixed>
-        <div class="header">
         <nb-icon [icon]="icon" class="f-size" (click)="toggle()" *ngIf="access.user$ | async"></nb-icon>
+        <div class="header">
+        
         
             <h4>Keepit Notes</h4>
         </div>

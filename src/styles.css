@@ -7,3 +7,15 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     justify-content: flex-start !important ;
     align-items: flex-start !important;
  }
+
+ body::-webkit-scrollbar {
+    width: 0.25rem;
+  }
+  
+  body::-webkit-scrollbar-track {
+    background: #222b45;
+  }
+  
+  body::-webkit-scrollbar-thumb {
+    background: #3a86e9;
+  }
