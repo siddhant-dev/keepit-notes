@@ -30,9 +30,11 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 Please create an environment folder in src folder. Create 2 files in environment folder. environment.ts and environment.prod.ts
 In these files add the firebase config. 
 
-```export const environment = {
+```
+export const environment = {
   production: false,
   firebase: {
     ---your config ---
   }
-};```
+};
+```
